@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* Tailwind v4 theme tokens for custom magical palette */
+@theme {
+  --font-magical: Inter, system-ui, sans-serif;
+  --color-magical-pink: #FF69B4;
+  --color-magical-purple: #DDA0DD;
+  --color-magical-blue: #87CEEB;
+  --color-magical-yellow: #FFF8DC;
+  --color-magical-gold: #FFD700;
+  --color-pastel-pink: #FFB6C1;
+  --color-pastel-purple: #E6E6FA;
+  --color-pastel-blue: #B0E0E6;
+  --color-pastel-yellow: #FFFFE0;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, var(--color-pastel-pink) 0%, var(--color-pastel-purple) 50%, var(--color-pastel-blue) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .text-child {
+    @apply text-xl leading-relaxed font-medium;
+  }
+  
+  .text-title {
+    @apply text-3xl font-bold text-magical-pink;
+  }
+  
+  .text-button {
+    @apply text-lg font-semibold;
+  }
+  
+  .magical-button {
+    @apply bg-gradient-to-r from-magical-pink to-magical-purple text-white px-8 py-4 rounded-2xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 min-h-[60px] min-w-[200px] flex items-center justify-center;
+  }
+  
+  .magical-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  
+  .magical-input {
+    @apply w-full p-6 text-xl border-2 rounded-2xl focus:outline-none focus:ring-4 resize-none min-h-[120px];
+    border-color: var(--color-magical-pink);
+    --tw-ring-color: var(--color-magical-pink);
+    --tw-ring-opacity: 0.3;
+  }
+  
+  .sparkle {
+    @apply absolute w-4 h-4 rounded-full;
+    background-color: var(--color-magical-gold);
+    animation: sparkle 2s ease-in-out infinite;
+  }
+  
+  .floating-heart {
+    @apply absolute;
+    color: var(--color-magical-pink);
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+/* Print styles for crafts */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .craft-print {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 8.5in !important;
+    margin: 0 !important;
+    padding: 0.5in !important;
+  }
+  
+  .craft-print img {
+    max-width: 100% !important;
+    height: auto !important;
+    filter: grayscale(100%) contrast(150%) !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #FF69B4, #DDA0DD);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #FF1493, #DA70D6);
+}
+
+/* Custom animations */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Emoji burst clickable area */
+.clickable-area {
+  cursor: pointer;
+}
+
+.clickable-area:hover:not(:has(button, input, textarea, [role="button"])) {
+  cursor: pointer;
+}
